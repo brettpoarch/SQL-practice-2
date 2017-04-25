@@ -1,0 +1,1 @@
+SQL practice part 2
