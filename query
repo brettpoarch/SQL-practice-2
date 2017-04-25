@@ -1,0 +1,102 @@
+SELECT m.title, avg(r.rating)
+FROM movies m
+JOIN ratings r ON m.movieid =r.movieid
+GROUP BY m.title;
+
+SELECT m.title, count(r.rating)
+FROM movies m
+JOIN ratings r ON m.movieid =r.movieid
+GROUP BY m.title;
+
+SELECT g.genres, count(mg.genre_id)
+FROM genre g
+JOIN movie_genre mg ON g.id = mg.genre_id
+GROUP BY g.genres;
+
+SELECT r.userid, avg(r.rating)
+FROM ratings r
+GROUP BY r.userid;
+
+SELECT count(r.userid), r.userid
+FROM ratings r
+GROUP BY r.userid
+ORDER BY count(r.userid) DESC;
+
+SELECT r.userid, avg(r.rating)
+FROM ratings r
+GROUP BY r.userid
+ORDER BY avg(r.rating) DESC;
+
+SELECT r.userid, avg(r.rating)
+FROM ratings r
+GROUP BY r.userid
+HAVING count(r.rating) > 50
+ORDER BY avg(r.rating) DESC;
+
+SELECT m.title, avg(r.rating)
+FROM movies m
+JOIN ratings r ON m.movieid =r.movieid
+GROUP BY m.title
+HAVING avg(r.rating) > 4;
+
+SELECT mg.genre_id, count(r.rating), avg(r.rating)
+FROM movie_genre mg
+JOIN ratings r ON mg.movieid = r.movieid
+GROUP BY mg.genre_id
+ORDER BY avg(r.rating) DESC;
+
+INSERT INTO actors (name, character_name, date_of_birth, movieid)
+VALUES ('Al Pacino', 'Michael Corleone', '4/25/1940', '858'),
+       ('Marlon Brando', 'Don Vito Corleone', '4/3/1924', '858'),
+       ('James Caan', 'Sonny Corleone', '3/26/1940', '858'),
+       ('Richard Castellano', 'Clemenza', '9/4/1933', '858'),
+       ('Robert Duval', 'Tom Hagen', '1/5/1931', '858'),
+       ('Sterling Hayden', 'Cpt McCluskey', '3/26/1916', '858'),
+       ('John Marley', 'Jack Woltz', '10/17/1907', '858'),
+       ('Richard Conte', 'Barzini', '03/24/1910', '858'),
+       ('Al Lettieri', 'Sollozo', '2/24/1928', '858' ),
+       ('Diane Keaton', 'Kay Adams', '1/5/1946', '858');
+
+INSERT INTO actors (name, character_name, date_of_birth, movieid)
+VALUES ('Al Pacino', 'Michael Corleone', '4/25/1940', '1221'),
+       ('Robert De Niro', 'Vito Corleone', '8/17/1943', '1221'),
+       ('James Caan', 'Sonny Corleone', '3/26/1940', '1221'),
+       ('Richard Castellano', 'Clemenza', '9/4/1933', '1221'),
+       ('Robert Duval', 'Tom Hagen', '1/5/1931', '1221'),
+       ('John Cazale', 'Fredo Corleone', '8/12/1935', '1221'),
+       ('Talia Shire', 'Connie Corleone', '4/25/1946', '1221'),
+       ('Richard Conte', 'Barzini', '03/24/1910', '1221'),
+       ('Al Lettieri', 'Sollozo', '2/24/1928', '1221' ),
+       ('Diane Keaton', 'Kay Adams', '1/5/1946', '1221');
+
+INSERT INTO actors (name, character_name, date_of_birth, movieid)
+VALUES ('Al Pacino', 'Michael Corleone', '4/25/1940', '2023'),
+       ('Andy Garcia', 'Vincent Mancini', '4/12/1956', '2023'),
+       ('Joe Mantegna', 'Joey Zasa', '3/26/1940', '2023'),
+       ('Bridget Fonda', 'Grace Hamilton', '9/4/1933', '2023'),
+       ('Robert Duval', 'Tom Hagen', '1/5/1931', '2023'),
+       ('Sofia Coppola', 'Mary Corleone', '3/26/1916', '2023'),
+       ('John Marley', 'Jack Woltz', '10/17/1907', '2023'),
+       ('Richard Conte', 'Barzini', '03/24/1910', '2023'),
+       ('Al Lettieri', 'Sollozo', '2/24/1928', '2023' ),
+       ('Diane Keaton', 'Kay Adams', '1/5/1946', '2023');
+
+UPDATE movies
+SET mpaa_rating = 'R'
+WHERE movieid = '858';
+
+UPDATE movies
+SET mpaa_rating = 'R'
+WHERE movieid = '1221';
+
+UPDATE movies
+SET mpaa_rating = 'R'
+WHERE movieid = '2023';
+
+UPDATE movies
+SET mpaa_rating = 'R'
+WHERE movieid = '6';
+
+UPDATE movies
+SET mpaa_rating = 'PG-13'
+WHERE movieid = '3';
